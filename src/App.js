@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 const rootUrl = 'http://localhost:3001/api'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
 
       </div>
-    );
-    }
+    )
   }
+}
 
-export default App;
+export default App
