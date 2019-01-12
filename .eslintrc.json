@@ -1,10 +1,15 @@
 {
-    "extends": [
-        "standard",
-        "plugin:react/recommended"
-    ],
-    "globals": {
-        "fetch": false,
-        "it": false
+  "extends": [
+      "standard",
+      "plugin:react/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  },
+  "globals": {
+      "fetch": false,
+      "it": false
+  }
 }
