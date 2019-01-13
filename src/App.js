@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 import { routes } from './lib/routes'
 import { PrivateRoute, TopNav } from './components'
-import { mainStyle } from './styles/materialStyles'
+import { mainStyle } from './styles/mainStyles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import withStyles from '@material-ui/core/styles/withStyles'
 import './App.css'

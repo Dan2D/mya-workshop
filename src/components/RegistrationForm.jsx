@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
+import Icon from '@material-ui/icons/AccountCircleOutlined'
 import Link from '@material-ui/core/Link'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -26,9 +28,14 @@ function Register (props) {
 
   return (
     <React.Fragment>
-      <Typography component="h1" variant="h5">
+      <div className={classes.header}>
+        <Avatar className={classes.avatar}>
+          <Icon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
         Register
-      </Typography>
+        </Typography>
+      </div>
       <form className={classes.form} onSubmit={handleSubmit}>
         <TextField
           id="username"
@@ -89,7 +96,7 @@ function Register (props) {
           Register
         </Button>
       </form>
-      <span className="register-footer">
+      <span className={classes.registerFooter}>
         Already registered? <Link component={RouterLink} to="/login">Login here.</Link>
       </span>
     </React.Fragment>

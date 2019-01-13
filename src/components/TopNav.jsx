@@ -5,8 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { topNavStyle } from '../styles/materialStyles'
+import { topNavStyle } from '../styles/mainStyles'
 import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link'
 
 class TopNav extends Component {
   render () {
@@ -15,15 +16,21 @@ class TopNav extends Component {
       <React.Fragment>
         <AppBar position="fixed" color="default">
           <Toolbar>
-            <Typography variant="h6" color="secondary">
-              Make
-            </Typography>
-            <Typography variant="h6" color="primary">
-              Your
-            </Typography>
-            <Typography variant="h6" color="secondary">
-              Adventure
-            </Typography>
+            <Link
+              component={RouterLink}
+              to="/"
+              underline="none"
+            >
+              <Typography inline variant="h6" color="secondary">
+                Make
+              </Typography>
+              <Typography inline variant="h6" color="primary">
+                Your
+              </Typography>
+              <Typography inline variant="h6" color="secondary">
+                Adventure
+              </Typography>
+            </Link>
             <Button
               color="inherit"
               className={classes.login}
