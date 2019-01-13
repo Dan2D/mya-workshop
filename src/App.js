@@ -8,7 +8,9 @@ import {
 import { routes } from './lib/routes'
 import { PrivateRoute } from './components'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import './App.css'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 
 class App extends Component {
   render () {
@@ -16,6 +18,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <CssBaseline />
+          <AppBar position="fixed" color="default">
+            <Toolbar>
+              <Typography variant="h6" color="secondary">
+                Photos
+              </Typography>
+            </Toolbar>
+          </AppBar>
           <Switch>
             {routes.map((route, index) => {
               return route.private

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -25,7 +26,10 @@ function Register (props) {
 
   return (
     <React.Fragment>
-      <form className={classes.form}>
+      <Typography component="h1" variant="h5">
+        Register
+      </Typography>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <TextField
           id="username"
           name="username"

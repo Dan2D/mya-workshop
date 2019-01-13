@@ -4,6 +4,10 @@ import Button from '@material-ui/core/Button'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
+import LockIcon from '@material-ui/icons/LockOutlined'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import Link from '@material-ui/core/Link'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -16,6 +20,7 @@ function Login (props) {
     handleChange,
     isValid,
     setFieldTouched,
+    isSubmitting,
     classes
   } = props
 
@@ -27,7 +32,13 @@ function Login (props) {
 
   return (
     <React.Fragment>
-      <form className={classes.form}>
+      <Avatar className={classes.avatar}>
+        <LockIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Login
+      </Typography>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <TextField
           id="username"
           name="username"
@@ -56,16 +67,19 @@ function Login (props) {
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-          disabled={!isValid}
-        >
-          Login
-        </Button>
+        <div className={classes.wrapper}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            disabled={!isValid || isSubmitting}
+          >
+            Login
+          </Button>
+          {isSubmitting && <CircularProgress size={24} className={classes.buttonProgress} />}
+        </div>
       </form>
       <span className="login-links">
         <Link component="button" onClick={() => console.log('clicked')}>Forgot your password?</Link>
@@ -83,7 +97,8 @@ Login.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
-  setFieldTouched: PropTypes.func.isRequired
+  setFieldTouched: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool
 }
 
 export default Login

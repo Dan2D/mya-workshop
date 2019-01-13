@@ -1,53 +1,83 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Formik } from 'formik'
-import * as Yup from 'yup'
 import LoginForm from './LoginForm'
 import RegistrationForm from './RegistrationForm'
-import { styles } from '../styles/materialStyles'
-import Avatar from '@material-ui/core/Avatar'
-import LockIcon from '@material-ui/icons/LockOutlined'
+import { formStyle } from '../styles/materialStyles'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import Snackbar from '@material-ui/core/Snackbar'
 import withStyles from '@material-ui/core/styles/withStyles'
+import { loginSchema, registrationSchema } from '../lib/formValidations'
+import { authService } from '../services'
 import '../styles/Auth.css'
-
-const validationSchema = Yup.object({
-  username: Yup.string('Enter a username')
-    .required('Username is required'),
-  email: Yup.string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: Yup.string('')
-    .min(8, 'Password must contain at least 8 characters')
-    .required('Password is required'),
-  confirmPassword: Yup.string('Enter your password')
-    .required('Confirm your password')
-    .oneOf([Yup.ref('password')], 'Password does not match')
-})
+import SnackbarWrapper from './SnackbarWrapper'
 
 class AuthForm extends Component {
+  state = {
+    open: false,
+    error: null
+  };
+
+  handleClick = () => {
+    this.setState({ open: true })
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    this.setState({ open: false })
+  }
+
+  handleSubmit = (values, actions) => {
+    let { registering } = this.props
+    if (registering) {
+      let { username, email, password } = values
+      authService.register(username, email, password)
+    } else {
+      let { username, password } = values
+      authService.login(username, password)
+        .then(
+          () => {},
+          error => {
+            actions.setSubmitting(false)
+            this.setState({ error, open: true })
+          }
+        )
+    }
+  }
+
   render () {
     let { registering, classes } = this.props
+    let { open, error } = this.state
     let Form = registering ? RegistrationForm : LoginForm
-    let title = registering ? 'Register' : 'Login'
-    const values = { name: '', email: '', password: '', confirmPass: '' }
+    let values = { name: '', email: '', password: '', confirmPass: '' }
 
     return (
       <main className={classes.main}>
         <Paper className={classes.paper}>
-          {!registering && <Avatar className={classes.avatar}>
-            <LockIcon />
-          </Avatar>}
-          <Typography component="h1" variant="h5">
-            {title}
-          </Typography>
           <Formik
             render={props => <Form {...props} classes={classes} />}
             initialValues={values}
-            validationSchema={validationSchema}
+            validationSchema={registering ? registrationSchema : loginSchema}
+            onSubmit={this.handleSubmit}
           />
         </Paper>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center'
+          }}
+          open={open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+          <SnackbarWrapper
+            onClose={this.handleClose}
+            variant="error"
+            message={error}
+          />
+        </Snackbar>
       </main>
     )
   }
@@ -58,4 +88,4 @@ AuthForm.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(AuthForm)
+export default withStyles(formStyle)(AuthForm)
