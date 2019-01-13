@@ -1,4 +1,5 @@
-import { Home, Login, Register, Workshop } from '../views'
+import React from 'react'
+import { Home, Authentication, Workshop } from '../views'
 
 export const routes = [
   {
@@ -11,13 +12,13 @@ export const routes = [
     path: '/login',
     exact: false,
     private: false,
-    component: Login
+    component: Authentication
   },
   {
     path: '/register',
     exact: false,
     private: false,
-    component: Register
+    component: () => (<Authentication registering={true} />)
   },
   {
     path: '/workshop',

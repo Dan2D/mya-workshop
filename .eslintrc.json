@@ -11,5 +11,8 @@
   "globals": {
       "fetch": false,
       "it": false
+  },
+  "rules": {
+    "react/display-name": "off"
   }
 }
