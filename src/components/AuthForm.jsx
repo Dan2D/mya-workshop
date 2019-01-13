@@ -54,7 +54,7 @@ class AuthForm extends Component {
     let values = { name: '', email: '', password: '', confirmPass: '' }
 
     return (
-      <main className={classes.main}>
+      <div className={classes.container}>
         <Paper className={classes.paper}>
           <Formik
             render={props => <Form {...props} classes={classes} />}
@@ -78,7 +78,7 @@ class AuthForm extends Component {
             message={error}
           />
         </Snackbar>
-      </main>
+      </div>
     )
   }
 }

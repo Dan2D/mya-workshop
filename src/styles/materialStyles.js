@@ -1,8 +1,27 @@
 import green from '@material-ui/core/colors/green'
 import amber from '@material-ui/core/colors/amber'
 
-export const formStyle = theme => ({
+export const mainStyle = theme => ({
   main: {
+    height: 'calc(100% - 64px)',
+    overflow: 'hidden',
+    paddingTop: '.35rem'
+  },
+  content: {
+    height: '100%',
+    overflow: 'auto'
+  }
+})
+
+export const topNavStyle = theme => ({
+  login: {
+    marginLeft: 'auto',
+    marginRight: '0'
+  }
+})
+
+export const formStyle = theme => ({
+  container: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,

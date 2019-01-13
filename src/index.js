@@ -16,6 +16,9 @@ axios.interceptors.response.use(function (response) {
 })
 
 const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true
+  },
   palette: {
     primary: {
       main: '#5c6bc0'
