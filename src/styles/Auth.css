@@ -1,0 +1,10 @@
+.login-links {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.register-footer {
+  font-size: 14px;
+}

@@ -1,4 +1,3 @@
-export { default as Home } from './Home'
-export { default as Login } from './Login'
-export { default as Register } from './Register'
+export { default as Landing } from './Landing'
+export { default as Authentication } from './Authentication'
 export { default as Workshop } from './Workshop'

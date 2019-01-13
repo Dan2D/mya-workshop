@@ -1,23 +1,24 @@
-import { Home, Login, Register, Workshop } from '../views'
+import React from 'react'
+import { Landing, Authentication, Workshop } from '../views'
 
 export const routes = [
   {
     path: '/',
     exact: true,
     private: false,
-    component: Home
+    component: Landing
   },
   {
     path: '/login',
     exact: false,
     private: false,
-    component: Login
+    component: Authentication
   },
   {
     path: '/register',
     exact: false,
     private: false,
-    component: Register
+    component: () => (<Authentication registering={true} />)
   },
   {
     path: '/workshop',
