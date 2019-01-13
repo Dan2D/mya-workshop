@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import { Formik } from 'formik'
 import LoginForm from './LoginForm'
 import RegistrationForm from './RegistrationForm'
-import { formStyle } from '../styles/materialStyles'
+import { authFormStyle } from '../styles/formStyles'
 import Paper from '@material-ui/core/Paper'
 import Snackbar from '@material-ui/core/Snackbar'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { loginSchema, registrationSchema } from '../lib/formValidations'
 import { authService } from '../services'
-import '../styles/Auth.css'
 import SnackbarWrapper from './SnackbarWrapper'
 
 class AuthForm extends Component {
@@ -88,4 +87,4 @@ AuthForm.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(formStyle)(AuthForm)
+export default withStyles(authFormStyle)(AuthForm)

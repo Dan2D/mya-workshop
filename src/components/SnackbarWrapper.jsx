@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
 import WarningIcon from '@material-ui/icons/Warning'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { snackbarStyle } from '../styles/materialStyles'
+import { snackbarStyle } from '../styles/snackbarStyles'
 
 const variantIcon = {
   success: CheckCircleIcon,

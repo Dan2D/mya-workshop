@@ -32,12 +32,14 @@ function Login (props) {
 
   return (
     <React.Fragment>
-      <Avatar className={classes.avatar}>
-        <LockIcon />
-      </Avatar>
-      <Typography component="h1" variant="h5">
-        Login
-      </Typography>
+      <div className={classes.header}>
+        <Avatar className={classes.avatar}>
+          <LockIcon />
+        </Avatar>
+        <Typography inline component="h1" variant="h5">
+          Login
+        </Typography>
+      </div>
       <form className={classes.form} onSubmit={handleSubmit}>
         <TextField
           id="username"
@@ -81,7 +83,7 @@ function Login (props) {
           {isSubmitting && <CircularProgress size={24} className={classes.buttonProgress} />}
         </div>
       </form>
-      <span className="login-links">
+      <span className={classes.loginLinks}>
         <Link component="button" onClick={() => console.log('clicked')}>Forgot your password?</Link>
         <Link component={RouterLink} to="/register">Register</Link>
       </span>

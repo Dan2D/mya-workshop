@@ -1,26 +1,12 @@
 import green from '@material-ui/core/colors/green'
-import amber from '@material-ui/core/colors/amber'
 
-export const mainStyle = theme => ({
-  main: {
-    height: 'calc(100% - 64px)',
-    overflow: 'hidden',
-    paddingTop: '.35rem'
+export const authFormStyle = theme => ({
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    marginLeft: '50%'
   },
-  content: {
-    height: '100%',
-    overflow: 'auto'
-  }
-})
-
-export const topNavStyle = theme => ({
-  login: {
-    marginLeft: 'auto',
-    marginRight: '0'
-  }
-})
-
-export const formStyle = theme => ({
   container: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
@@ -60,31 +46,14 @@ export const formStyle = theme => ({
     top: '50%',
     left: '50%',
     marginLeft: -12
-  }
-})
-
-export const snackbarStyle = theme => ({
-  success: {
-    backgroundColor: green[600]
   },
-  error: {
-    backgroundColor: theme.palette.error.dark
-  },
-  info: {
-    backgroundColor: theme.palette.primary.dark
-  },
-  warning: {
-    backgroundColor: amber[700]
-  },
-  icon: {
-    fontSize: 20
-  },
-  iconVariant: {
-    opacity: 0.9,
-    marginRight: theme.spacing.unit
-  },
-  message: {
+  loginLinks: {
     display: 'flex',
-    alignItems: 'center'
+    width: '100%',
+    justifyContent: 'space-between',
+    fontSize: '14px'
+  },
+  registerFooter: {
+    fontSize: '14px'
   }
 })
