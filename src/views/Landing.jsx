@@ -1,31 +1,29 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { landingPageStyle } from '../styles/mainStyles'
 import { Link as RouterLink } from 'react-router-dom'
 
 class Landing extends Component {
   render () {
-    let { classes } = this.props
+    const { classes } = this.props
     return (
-      <div className={classes.container}>
+      <React.Fragment>
         <Typography align="center" variant="h5" className={classes.blurb}>
           Do you love&nbsp;
           <Typography inline className={classes.standout}>
             {"'"}Choose Your Own Adventure{"'"}
           </Typography>
-          &nbsp;novels and games?{<br/>}
-          Do you have a story burning deep within you, waiting to be exposed to the world?{<br/>}
+          &nbsp;novels and games?{<br />}
+          Do you have a story burning deep within you, waiting to be exposed to the world?{<br />}
           Whether you are here to play or create,&nbsp;
-          <Typography inline color="secondary" className={classes.logo}>
+          <Typography inline className={classes.secondaryLogo}>
             Make
           </Typography>
-          <Typography inline color="primary" className={classes.logo}>
+          <Typography inline className={classes.primaryLogo}>
             Your
           </Typography>
-          <Typography inline color="secondary" className={classes.logo}>
+          <Typography inline className={classes.secondaryLogo}>
             Adventure
           </Typography>
           &nbsp;is your portal to endless adventure.
@@ -52,7 +50,7 @@ class Landing extends Component {
             Start your adventure
           </Button>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -61,4 +59,4 @@ Landing.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(landingPageStyle)(Landing)
+export default Landing

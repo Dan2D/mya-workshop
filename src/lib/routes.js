@@ -1,12 +1,12 @@
 import React from 'react'
-import { Landing, Authentication, Workshop } from '../views'
+import { Home, Authentication, Workshop } from '../views'
 
 export const routes = [
   {
     path: '/',
     exact: true,
     private: false,
-    component: Landing
+    component: Home
   },
   {
     path: '/login',
@@ -18,7 +18,7 @@ export const routes = [
     path: '/register',
     exact: false,
     private: false,
-    component: () => (<Authentication registering={true} />)
+    component: (props) => (<Authentication registering={true} {...props} />)
   },
   {
     path: '/workshop',

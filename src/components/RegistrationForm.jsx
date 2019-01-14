@@ -76,7 +76,7 @@ function Register (props) {
         <TextField
           id="confirmPass"
           name="confirmPass"
-          type="confirmPass"
+          type="password"
           helperText={touched.confirmPass ? errors.confirmPass : ''}
           error={touched.confirmPass && Boolean(errors.confirmPass)}
           placeholder="Confirm Password"
