@@ -17,7 +17,7 @@ export const registrationSchema = object({
   password: string('')
     .min(8, 'Password must contain at least 8 characters')
     .required('Password is required'),
-  confirmPassword: string('Enter your password')
+  confirmPass: string('Enter your password')
     .required('Confirm your password')
     .oneOf([ref('password')], 'Password does not match')
 })
