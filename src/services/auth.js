@@ -1,6 +1,8 @@
 import decode from 'jwt-decode'
 import axios from 'axios'
 
+const rootPath = '/auth'
+
 const register = (username, email, password) => {
   return axios.post('/users', {
     username,
@@ -8,15 +10,14 @@ const register = (username, email, password) => {
     password
   })
     .then(response => {
+      setToken(response.data.token)
       return Promise.resolve()
     })
-    .catch(function (error) {
-      return Promise.reject(error)
-    })
+    .catch(error => Promise.reject(error))
 }
 
 const login = (username, password) => {
-  return axios.post('/auth', {
+  return axios.post(rootPath, {
     username,
     password
   })
@@ -24,9 +25,7 @@ const login = (username, password) => {
       setToken(response.data.token)
       return Promise.resolve()
     })
-    .catch(function (error) {
-      return Promise.reject(error)
-    })
+    .catch(error => Promise.reject(error))
 }
 
 const loggedIn = () => {
@@ -64,11 +63,29 @@ const getProfile = () => {
   return decode(this.getToken())
 }
 
+const verifyEmail = (token) => {
+  return axios.post(`${rootPath}/verify`, {
+    token
+  })
+    .then(() => Promise.resolve())
+    .catch(error => Promise.reject(error))
+}
+
+const resendEmail = (email) => {
+  return axios.post(`${rootPath}/confirm-token`, {
+    email
+  })
+    .then(response => Promise.resolve(response))
+    .catch(error => Promise.reject(error))
+}
+
 export const authService = {
   register,
   login,
   loggedIn,
   isTokenExpired,
   logout,
-  getProfile
+  getProfile,
+  verifyEmail,
+  resendEmail
 }
