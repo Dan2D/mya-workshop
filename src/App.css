@@ -1,9 +1,3 @@
-:root {
-  --primary: #092ef2;
-  --font-family-sans-serif: "Nunito Sans", sans-serif;
-  --font-family-monospace: "Nunito Sans", sans-serif;
-}
-
 #root {
   height: 100%;
 }
@@ -14,8 +8,6 @@ html {
 
 body {
   height: 100%;
-  background-color: #FFFFFF;
-  font-family: var(--font-family-sans-serif);
 }
 
 .App {

@@ -28,12 +28,14 @@ class Authentication extends Component {
 
   handleSubmit = (values, actions) => {
     let { registering, history } = this.props
+
     if (registering) {
       let { username, email, password } = values
       authService.register(username, email, password)
         .then(
           success => {
             actions.setSubmitting(false)
+            history.push('/', { registered: true, email })
           },
           error => this.errorCallback(error, actions)
         )

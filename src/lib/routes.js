@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, Authentication, Workshop } from '../views'
+import { Home, Authentication, Workshop, Verification } from '../views'
 
 export const routes = [
   {
@@ -25,5 +25,11 @@ export const routes = [
     exact: false,
     private: true,
     component: Workshop
+  },
+  {
+    path: '/verify',
+    exact: false,
+    private: false,
+    component: Verification
   }
 ]
