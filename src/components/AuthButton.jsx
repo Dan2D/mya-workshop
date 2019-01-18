@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import { authService } from '../services'
 import { authButtonStyle } from '../styles/mainStyles'
 import withStyles from '@material-ui/core/styles/withStyles'
+import UserMenu from './UserMenu'
 
 class AuthButton extends Component {
   render () {
@@ -13,16 +14,7 @@ class AuthButton extends Component {
     return (
       <React.Fragment>
         {loggedIn
-          ? <Button
-            color="inherit"
-            className={classes.login}
-            onClick={() => {
-              authService.logout()
-              history.push('/')
-            }}
-          >
-            Logout
-          </Button>
+          ? <UserMenu history={history} />
           : <Button
             color="inherit"
             className={classes.login}
