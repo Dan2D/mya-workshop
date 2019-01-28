@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Formik } from 'formik'
-import { LoginForm, RegistrationForm } from '../components'
-import { authFormStyle } from '../styles/formStyles'
-import Paper from '@material-ui/core/Paper'
-import withStyles from '@material-ui/core/styles/withStyles'
+import { LoginForm, RegistrationForm, Form } from '../components'
 import { loginSchema, registrationSchema } from '../lib/formValidations'
 import { authService } from '../services'
 import { withSnackbar } from 'notistack'
+import PaperContainer from '../components/PaperContainer'
 
 class Authentication extends Component {
   state = {
@@ -55,21 +53,19 @@ class Authentication extends Component {
   render () {
     if (authService.loggedIn()) this.props.history.push('/')
 
-    let { registering, classes } = this.props
-    let Form = registering ? RegistrationForm : LoginForm
+    const { registering } = this.props
+    const component = registering ? RegistrationForm : LoginForm
     let values = { name: '', email: '', password: '', confirmPass: '' }
 
     return (
-      <div className={classes.container}>
-        <Paper className={classes.paper}>
-          <Formik
-            render={props => <Form {...props} classes={classes} />}
-            initialValues={values}
-            validationSchema={registering ? registrationSchema : loginSchema}
-            onSubmit={this.handleSubmit}
-          />
-        </Paper>
-      </div>
+      <PaperContainer>
+        <Formik
+          render={props => <Form component={component} {...props} />}
+          initialValues={values}
+          validationSchema={registering ? registrationSchema : loginSchema}
+          onSubmit={this.handleSubmit}
+        />
+      </PaperContainer>
     )
   }
 }
@@ -77,8 +73,7 @@ class Authentication extends Component {
 Authentication.propTypes = {
   registering: PropTypes.bool,
   history: PropTypes.any,
-  classes: PropTypes.object.isRequired,
   enqueueSnackbar: PropTypes.func.isRequired
 }
 
-export default withSnackbar(withStyles(authFormStyle)(Authentication))
+export default withSnackbar(Authentication)

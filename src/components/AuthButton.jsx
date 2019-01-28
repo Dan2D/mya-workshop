@@ -3,9 +3,18 @@ import PropTypes from 'prop-types'
 import { withRouter, Link as RouterLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import { authService } from '../services'
-import { authButtonStyle } from '../styles/mainStyles'
 import withStyles from '@material-ui/core/styles/withStyles'
 import UserMenu from './UserMenu'
+
+const styles = theme => ({
+  rootLink: {
+    fontSize: '22px'
+  },
+  login: {
+    marginLeft: 'auto',
+    marginRight: '0'
+  }
+})
 
 class AuthButton extends Component {
   render () {
@@ -34,4 +43,4 @@ AuthButton.propTypes = {
   history: PropTypes.any.isRequired
 }
 
-export default withRouter(withStyles(authButtonStyle)(AuthButton))
+export default withRouter(withStyles(styles)(AuthButton))

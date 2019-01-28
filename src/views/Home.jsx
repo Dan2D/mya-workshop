@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withSnackbar } from 'notistack'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { landingPageStyle } from '../styles/mainStyles'
 import { authService } from '../services'
 import Landing from './Landing'
 import Authenticated from './Authenticated'
 import AlertDialog from '../components/AlertDialog'
-import { withSnackbar } from 'notistack'
+
+export const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexFlow: 'column nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    background: 'linear-gradient(135deg, rgba(38,166,154,1) 30%, rgba(92,107,192,1) 70%)'
+  }
+})
 
 class Home extends Component {
   state = {
@@ -18,7 +28,7 @@ class Home extends Component {
   }
 
   componentDidMount () {
-    let { location, enqueueSnackbar } = this.props
+    const { location, enqueueSnackbar } = this.props
     if (location.state) {
       if (location.state.registered) {
         this.showAlert({
@@ -45,15 +55,15 @@ class Home extends Component {
   }
 
   render () {
-    let { classes } = this.props
-    let { open, dialogProps } = this.state
-    let loggedIn = authService.loggedIn()
+    const { classes, ...rest } = this.props
+    const { open, dialogProps } = this.state
+    const loggedIn = authService.loggedIn()
     return (
       <div className={classes.container}>
         <AlertDialog open={open} closeDialog={this.handleClose} {...dialogProps} />
         {loggedIn
-          ? <Authenticated classes={classes} />
-          : <Landing classes={classes} />}
+          ? <Authenticated {...rest} />
+          : <Landing {...rest} />}
       </div>
     )
   }
@@ -65,4 +75,4 @@ Home.propTypes = {
   enqueueSnackbar: PropTypes.func.isRequired
 }
 
-export default withSnackbar(withStyles(landingPageStyle)(Home))
+export default withSnackbar(withStyles(styles)(Home))

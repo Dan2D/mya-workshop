@@ -7,11 +7,21 @@ import {
   Switch
 } from 'react-router-dom'
 import { routes } from './lib/routes'
-import { PrivateRoute, TopNav } from './components'
-import { mainStyle } from './styles/mainStyles'
+import { PrivateRoute, TopNav, SideNav } from './components'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import withStyles from '@material-ui/core/styles/withStyles'
 import './App.css'
+
+const styles = theme => ({
+  main: {
+    height: 'calc(100% - 88px)',
+    display: 'flex'
+  },
+  content: {
+    flex: '1 1 auto',
+    overflow: 'hidden'
+  }
+})
 
 class App extends Component {
   render () {
@@ -22,6 +32,7 @@ class App extends Component {
           <CssBaseline />
           <TopNav />
           <main className={classes.main}>
+            <SideNav />
             <div className={classes.content}>
               <Switch>
                 {routes.map((route, index) => {
@@ -44,4 +55,4 @@ App.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(mainStyle)(App)
+export default withStyles(styles)(App)

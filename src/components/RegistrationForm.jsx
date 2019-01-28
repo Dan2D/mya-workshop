@@ -7,6 +7,7 @@ import Avatar from '@material-ui/core/Avatar'
 import Icon from '@material-ui/icons/AccountCircleOutlined'
 import Link from '@material-ui/core/Link'
 import { Link as RouterLink } from 'react-router-dom'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 function Register (props) {
   const {
@@ -17,6 +18,7 @@ function Register (props) {
     handleChange,
     isValid,
     setFieldTouched,
+    isSubmitting,
     classes
   } = props
 
@@ -85,16 +87,19 @@ function Register (props) {
           fullWidth
           margin="normal"
         />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-          disabled={!isValid}
-        >
-          Register
-        </Button>
+        <div className={classes.wrapper}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            disabled={!isValid || isSubmitting}
+          >
+            Register
+          </Button>
+          {isSubmitting && <CircularProgress size={24} className={classes.buttonProgress} />}
+        </div>
       </form>
       <span className={classes.registerFooter}>
         Already registered? <Link component={RouterLink} to="/login">Login here.</Link>
@@ -111,7 +116,8 @@ Register.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
-  setFieldTouched: PropTypes.func.isRequired
+  setFieldTouched: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool
 }
 
 export default Register

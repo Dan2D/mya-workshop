@@ -4,12 +4,12 @@ import { Redirect } from 'react-router-dom'
 import BannerLoader from '../components/BannerLoader'
 import { authService } from '../services'
 import { withSnackbar } from 'notistack'
-import withStyles from '@material-ui/core/styles/withStyles'
-import { authFormStyle } from '../styles/formStyles'
-import { Typography, Paper } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { Formik } from 'formik'
 import { object, string } from 'yup'
 import ConfirmationForm from '../components/ConfirmationForm'
+import Form from '../components/Form'
+import PaperContainer from '../components/PaperContainer'
 
 export const emailSchema = object({
   email: string('Enter your email')
@@ -26,7 +26,6 @@ class Verification extends Component {
 
   componentDidMount () {
     let { location, enqueueSnackbar } = this.props
-
     let params = new URLSearchParams(location.search)
     let token = params.get('token')
     if (token) {
@@ -61,8 +60,7 @@ class Verification extends Component {
   }
 
   render () {
-    let { pending, noToken, error } = this.state
-    const { classes } = this.props
+    const { pending, noToken, error } = this.state
 
     if (pending) return <BannerLoader />
     if (noToken) return <Redirect to="/" />
@@ -71,22 +69,21 @@ class Verification extends Component {
     let values = { email: '' }
 
     return (
-      <div className={classes.container}>
-        <Paper className={classes.paper}>
-          <Typography align="center" variant="h5">
-            Looks like there was an issue...
-          </Typography>
-          <Typography>
-            We were unable to verify your email. Your link may have expired. Please re-enter your email address so we can try again.
-          </Typography>
-          <Formik
-            render={props => <ConfirmationForm {...props} classes={classes} />}
-            initialValues={values}
-            validationSchema={emailSchema}
-            onSubmit={this.handleSubmit}
-          />
-        </Paper>
-      </div>
+      <PaperContainer>
+        <Typography align="center" variant="h5">
+          Looks like there was an issue...
+        </Typography>
+        <Typography align="center">
+          {'We were unable to verify your email. Your link may have expired.'}
+          {' Please re-enter your email address so we can try again.'}
+        </Typography>
+        <Formik
+          render={props => <Form component={ConfirmationForm} {...props} />}
+          initialValues={values}
+          validationSchema={emailSchema}
+          onSubmit={this.handleSubmit}
+        />
+      </PaperContainer>
     )
   }
 }
@@ -94,8 +91,7 @@ class Verification extends Component {
 Verification.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
-  enqueueSnackbar: PropTypes.func.isRequired,
-  classes: PropTypes.object
+  enqueueSnackbar: PropTypes.func.isRequired
 }
 
-export default withSnackbar(withStyles(authFormStyle)(Verification))
+export default withSnackbar(Verification)

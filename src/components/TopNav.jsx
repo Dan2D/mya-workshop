@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, withRouter } from 'react-router-dom'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -8,12 +8,14 @@ import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import withStyles from '@material-ui/core/styles/withStyles'
 import AuthButton from './AuthButton'
+import Hidden from '@material-ui/core/Hidden'
+import MenuIcon from '@material-ui/icons/Menu'
+import IconButton from '@material-ui/core/IconButton'
+import MobileNav from './MobileNav'
 
 const styles = theme => ({
   root: {
-    paddingTop: '12px',
-    paddingBottom: '12px',
-    minHeight: '88px'
+    zIndex: theme.zIndex.drawer + 1
   },
   progress: {
     flexGrow: 1
@@ -21,12 +23,32 @@ const styles = theme => ({
 })
 
 class TopNav extends Component {
+  state = {
+    open: false
+  }
+
+  handleDrawerToggle = () => {
+    this.setState(state => ({ open: !state.open }))
+  }
+
   render () {
     const { classes, loading } = this.props
+    const { open } = this.state
     return (
       <React.Fragment>
         <AppBar position="fixed" color="default" className={classes.root}>
           <Toolbar>
+            <Hidden smUp implementation="css">
+              <IconButton
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={this.handleDrawerToggle}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+              <MobileNav open={open} onClose={this.handleDrawerToggle} />
+            </Hidden>
             <Link
               component={RouterLink}
               to="/"
@@ -45,7 +67,7 @@ class TopNav extends Component {
             <AuthButton />
           </Toolbar>
         </AppBar>
-        <Toolbar className={classes.root} /> {/* Shim */}
+        <Toolbar /> {/* Shim */}
         {loading && <div className={classes.progress}><LinearProgress /></div>}
       </React.Fragment>
     )
@@ -57,4 +79,4 @@ TopNav.propTypes = {
   loading: PropTypes.bool
 }
 
-export default withStyles(styles)(TopNav)
+export default withRouter(withStyles(styles)(TopNav))

@@ -2,7 +2,39 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import withStyles from '@material-ui/core/styles/withStyles'
 import { Link as RouterLink } from 'react-router-dom'
+
+const styles = theme => ({
+  buttons: {
+    paddingBottom: '10rem'
+  },
+  button: {
+    lineHeight: '3',
+    marginTop: '1rem',
+    marginLeft: '1rem',
+    marginRight: '1rem'
+  },
+  blurb: {
+    lineHeight: '2.5',
+    fontWeight: '500'
+  },
+  standout: {
+    fontSize: '22px',
+    fontStyle: 'italic',
+    fontWeight: '500'
+  },
+  primaryLogo: {
+    fontSize: '22px',
+    fontWeight: '500',
+    color: theme.palette.primary.light
+  },
+  secondaryLogo: {
+    fontSize: '22px',
+    fontWeight: '500',
+    color: theme.palette.secondary.light
+  }
+})
 
 class Landing extends Component {
   render () {
@@ -59,4 +91,4 @@ Landing.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default Landing
+export default withStyles(styles)(Landing)

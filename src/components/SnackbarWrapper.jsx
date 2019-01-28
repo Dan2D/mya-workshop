@@ -9,7 +9,34 @@ import IconButton from '@material-ui/core/IconButton'
 import SnackbarContent from '@material-ui/core/SnackbarContent'
 import WarningIcon from '@material-ui/icons/Warning'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { snackbarStyle } from '../styles/snackbarStyles'
+import green from '@material-ui/core/colors/green'
+import amber from '@material-ui/core/colors/amber'
+
+const styles = theme => ({
+  success: {
+    backgroundColor: green[600]
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark
+  },
+  info: {
+    backgroundColor: theme.palette.primary.dark
+  },
+  warning: {
+    backgroundColor: amber[700]
+  },
+  icon: {
+    fontSize: 20
+  },
+  iconVariant: {
+    opacity: 0.9,
+    marginRight: theme.spacing.unit
+  },
+  message: {
+    display: 'flex',
+    alignItems: 'center'
+  }
+})
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -58,4 +85,4 @@ SnackbarWrapper.propTypes = {
   variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired
 }
 
-export default withStyles(snackbarStyle)(SnackbarWrapper)
+export default withStyles(styles)(SnackbarWrapper)

@@ -27,6 +27,14 @@ axios.interceptors.response.use(
 /* Axios default configs end */
 
 const theme = createMuiTheme({
+  mixins: {
+    toolbar: {
+      minHeight: '88px',
+      '@media (min-width:600px)': {
+        minHeight: '88px'
+      }
+    }
+  },
   typography: {
     useNextVariants: true
   },
