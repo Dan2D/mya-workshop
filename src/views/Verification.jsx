@@ -60,7 +60,9 @@ class Verification extends Component {
   }
 
   render () {
-    const { pending, noToken, error } = this.state
+    const { noToken, error } = this.state
+
+    let pending = true
 
     if (pending) return <BannerLoader />
     if (noToken) return <Redirect to="/" />

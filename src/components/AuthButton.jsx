@@ -26,6 +26,7 @@ class AuthButton extends Component {
           ? <UserMenu history={history} />
           : <Button
             color="inherit"
+            variant="outlined"
             className={classes.login}
             component={RouterLink}
             to="/login"

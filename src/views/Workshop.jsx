@@ -10,7 +10,10 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import Chip from '@material-ui/core/Chip'
 import Tooltip from '@material-ui/core/Tooltip'
+import Fab from '@material-ui/core/Fab'
+import AddIcon from '@material-ui/icons/Add'
 import batman from '../assets/b-man-funny.jpg'
+import { adventureService } from '../services/adventures'
 
 const styles = theme => ({
   container: {
@@ -65,12 +68,41 @@ const styles = theme => ({
   },
   tip: {
     background: '#000'
+  },
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 3,
+    right: theme.spacing.unit * 5
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit / 2
   }
 })
 
 const adventures = []
 
 class Workshop extends Component {
+  state = {
+    dialogProps: {
+      open: false,
+      onSubmit: adventureService.create()
+    }
+  }
+
+  openModal = () => {
+    const { dialogProps } = this.state
+    this.setState({
+      dialogProps: { ...dialogProps, open: true }
+    })
+  }
+
+  closeModal = () => {
+    const { dialogProps } = this.state
+    this.setState({
+      dialogProps: { ...dialogProps, open: false }
+    })
+  }
+
   render () {
     const { classes } = this.props
 
@@ -121,6 +153,16 @@ class Workshop extends Component {
             </Card>
           </Grid>
         ))}
+        <Fab
+          color="primary"
+          variant="extended"
+          aria-label="Add"
+          className={classes.fab}
+          onClick={this.openModal}
+        >
+          <AddIcon className={classes.extendedIcon} />
+          Create New
+        </Fab>
       </Grid>
     )
   }

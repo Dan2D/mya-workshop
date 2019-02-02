@@ -74,7 +74,8 @@ const styles = theme => ({
   },
   gridButton: {
     display: 'block',
-    margin: '0 auto 10rem auto'
+    margin: '0 auto 10rem auto',
+    color: '#000'
   }
 })
 

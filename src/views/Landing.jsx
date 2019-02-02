@@ -10,7 +10,6 @@ const styles = theme => ({
     paddingBottom: '10rem'
   },
   button: {
-    lineHeight: '3',
     marginTop: '1rem',
     marginLeft: '1rem',
     marginRight: '1rem'
@@ -63,7 +62,6 @@ class Landing extends Component {
         <div className={classes.buttons}>
           <Button
             color="secondary"
-            size="large"
             variant="contained"
             className={classes.button}
             component={RouterLink}
@@ -73,13 +71,12 @@ class Landing extends Component {
           </Button>
           <Button
             color="primary"
-            size="large"
             variant="contained"
             className={classes.button}
             component={RouterLink}
             to="/register"
           >
-            Start your adventure
+            Start Your Adventure
           </Button>
         </div>
       </React.Fragment>

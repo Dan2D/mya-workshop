@@ -21,3 +21,11 @@ export const registrationSchema = object({
     .required('Confirm your password')
     .oneOf([ref('password')], 'Password does not match')
 })
+
+export const adventureSchema = object({
+  name: string('Enter a name')
+    .required('Adventure Name is required')
+    .min(8, 'Adventure name must contain and least 8 characters'),
+  description: string('Enter a description')
+    .required('A description is required')
+})

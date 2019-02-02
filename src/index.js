@@ -36,14 +36,21 @@ const theme = createMuiTheme({
     }
   },
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
+    fontFamily: "'Nunito', 'Roboto', 'Helvetica', 'Arial', sans-serif",
+    button: {
+      fontSize: '16px',
+      textTransform: 'none'
+    }
   },
   palette: {
     primary: {
-      main: '#5c6bc0'
+      main: '#247BA0'
     },
     secondary: {
-      main: '#26a69a'
+      main: '#70C1B3',
+      light: '#93D9CD',
+      contrastText: '#fff'
     }
   },
   custom: {
